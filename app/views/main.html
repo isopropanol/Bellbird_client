@@ -1,5 +1,12 @@
 <div class="row marketing">
   <h2> Alarms </h2>
+  <form>
+    <div class="form-group">
+      <label for="newAlarm">Add a new Alarm!</label>
+      <textarea ng-model="newAlarm.description" class="form-control" id="newAlarm" rows="3"></textarea>
+    </div>
+    <button class="btn" ng-click="addAlarm()">Create</button>
+  </form>
   <p ng-repeat="alarm in alarms">
     {{alarm.description}}
   </p>

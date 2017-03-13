@@ -9,9 +9,15 @@
  */
 angular.module('frontendClientApp')
   .controller('MainCtrl', ['$scope', 'AlarmService', function ($scope, AlarmService) {
+    $scope.newAlarm = {};
+
     AlarmService.get().then(function (alarms) {
       $scope.alarms = alarms;
     });
+
+    $scope.addAlarm = function () {
+      AlarmService.post($scope.newAlarm);
+    }
 
     // $scope.updateGroup = function (group) {
     //   group.name = group.name.toLowerCase();
