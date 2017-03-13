@@ -8,14 +8,14 @@
  * Controller of the frontendClientApp
  */
 angular.module('frontendClientApp')
-  .controller('MainCtrl', ['$scope', 'GroupService', function ($scope, GroupService) {
-    GroupService.get().then(function (groups) {
-      $scope.groups = groups
+  .controller('MainCtrl', ['$scope', 'AlarmService', function ($scope, AlarmService) {
+    AlarmService.get().then(function (alarms) {
+      $scope.alarms = alarms;
     });
 
-    $scope.updateGroup = function (group) {
-      group.name = group.name.toLowerCase();
-      group.$save()
-      // group.update({name:group.name.toLowerCase()})
-    }
+    // $scope.updateGroup = function (group) {
+    //   group.name = group.name.toLowerCase();
+    //   group.$save()
+    //   // group.update({name:group.name.toLowerCase()})
+    // }
   }]);
