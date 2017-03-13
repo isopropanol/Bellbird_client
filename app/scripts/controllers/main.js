@@ -16,7 +16,19 @@ angular.module('frontendClientApp')
     });
 
     $scope.addAlarm = function () {
-      AlarmService.post($scope.newAlarm);
+      $scope.newAlarm.isDisabled = true;
+      AlarmService.post($scope.newAlarm).then(function () {
+        $scope.newAlarm = {};
+      },function (error) {
+        if(error.status === 422){
+          $scope.newAlarm.error = "Alarms must be in all CAPS";
+          $scope.newAlarm.isDisabled = false;
+        }
+        if(error.status === 400){
+          $scope.newAlarm.error = "Please provide text for an alarm";
+          $scope.newAlarm.isDisabled = false;
+        }
+      });
     }
 
     $scope.upvote = function (alarm) {

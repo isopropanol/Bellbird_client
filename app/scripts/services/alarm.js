@@ -27,6 +27,8 @@ angular.module('frontendClientApp')
 
           alarms.unshift(new Alarm(response.data));
           resolve(alarms);
+        }, function(error){
+          reject(error);
         });
       })
     },

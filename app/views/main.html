@@ -5,7 +5,8 @@
       <label for="newAlarm">Add a new Alarm!</label>
       <textarea ng-model="newAlarm.description" class="form-control" id="newAlarm" rows="3"></textarea>
     </div>
-    <button class="btn" ng-click="addAlarm()">Create</button>
+    <div ng-if="newAlarm.error">{{newAlarm.error}}</div>
+    <button class="btn" ng-disable="newAlarm.isDisabled" ng-click="addAlarm()">Create</button>
   </form>
   <div ng-repeat="alarm in alarms">
     <span>{{alarm.upvotes.length}} </span>
