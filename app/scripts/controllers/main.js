@@ -19,6 +19,10 @@ angular.module('frontendClientApp')
       AlarmService.post($scope.newAlarm);
     }
 
+    $scope.upvote = function (alarm) {
+      AlarmService.upvote(alarm);
+    }
+
     // $scope.updateGroup = function (group) {
     //   group.name = group.name.toLowerCase();
     //   group.$save()

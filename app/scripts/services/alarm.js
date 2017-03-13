@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('frontendClientApp')
-.service('AlarmService', ['$http','$q', 'Alarm', function($http, $q, Alarm) {
+.service('AlarmService', ['$http','$q', 'Alarm', 'Upvote', function($http, $q, Alarm, Upvote) {
   var baseUrl = "/api/alarms/";
   var alarms = [];
 
@@ -27,6 +27,18 @@ angular.module('frontendClientApp')
 
           alarms.unshift(new Alarm(response.data));
           resolve(alarms);
+        });
+      })
+    },
+
+    upvote: function (alarm) {
+      var url = "/api/upvotes/";
+      var params = {alarm_id:alarm.id};
+      return $q(function(resolve,reject){
+        $http({method:"POST", url:url, data:params}).then(function(response){
+
+          alarm.upvotes.push(new Upvote(response.data));
+          resolve(alarm);
         });
       })
     }

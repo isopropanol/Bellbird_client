@@ -7,7 +7,9 @@
     </div>
     <button class="btn" ng-click="addAlarm()">Create</button>
   </form>
-  <p ng-repeat="alarm in alarms">
-    {{alarm.description}}
-  </p>
+  <div ng-repeat="alarm in alarms">
+    <span>{{alarm.upvotes.length}} </span>
+    <span>{{alarm.description}} </span>
+    <button class="btn btn-xs btn-primary" ng-click="upvote(alarm)">Upvote!</button>
+  </div>
 </div>
