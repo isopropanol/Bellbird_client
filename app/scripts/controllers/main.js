@@ -10,6 +10,7 @@
 angular.module('frontendClientApp')
   .controller('MainCtrl', ['$scope', 'AlarmService', function ($scope, AlarmService) {
     $scope.newAlarm = {};
+    $scope.upvoting = {};
 
     AlarmService.get().then(function (alarms) {
       $scope.alarms = alarms;
@@ -32,7 +33,13 @@ angular.module('frontendClientApp')
     }
 
     $scope.upvote = function (alarm) {
-      AlarmService.upvote(alarm);
+      $scope.upvoting[alarm.id] = true;
+      AlarmService.upvote(alarm).then(function () {
+          $scope.upvoting[alarm.id] = false;
+
+      },function (error) {
+          $scope.upvoting[alarm.id] = false;
+      });
     }
 
     // $scope.updateGroup = function (group) {
